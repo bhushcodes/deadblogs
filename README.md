@@ -35,14 +35,7 @@ npm start
 
 If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill <pid>`), or run with `PORT=3001 npm start`.
 
-## 4. Keep Environment Variables Private
-
-- Do **not** commit `.env`; keep only `.env.example` in Git.
-- If secrets ever leak, rotate them immediately (change DB password, update `.env`, etc.).
-
-> Any database and admin configuration stays local—update your `.env` privately with those values.
-
-## 5. Useful Scripts
+## 4. Useful Scripts
 
 | Command           | Description                           |
 | ----------------- | ------------------------------------- |
@@ -51,7 +44,7 @@ If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill 
 | `npm run build`   | Production build (Turbopack)          |
 | `npm run db:seed` | Seed or re-seed admin + sample posts  |
 
-## 6. Deployment Notes
+## 5. Deployment Notes
 
 - Provide the same environment variables on your hosting platform.
 - Ensure PostgreSQL is reachable from the deployed app.
