@@ -25,14 +25,7 @@ ALTER ROLE deadpoet WITH LOGIN;
 CREATE DATABASE deadpoet_blog OWNER deadpoet;
 ```
 
-Update `DATABASE_URL` to match your actual credentials and host. After the database is ready, create a `.env` file based on `.env.example` and fill in:
-
-- `DATABASE_URL`
-- `AUTH_SECRET`
-- `ADMIN_EMAIL` / `ADMIN_PASSWORD`
-- `NEXT_PUBLIC_SITE_URL`
-
-Remember to URL-encode special characters in the password (e.g., `@` → `%40`).
+Update `DATABASE_URL` to match your actual credentials and host. After the database is ready, create a `.env` file based on `.env.example` and fill in `DATABASE_URL`, `AUTH_SECRET`, and `NEXT_PUBLIC_SITE_URL`. If you enable the built-in admin dashboard for yourself, set `ADMIN_EMAIL` and `ADMIN_PASSWORD` here and keep them private—these values are not committed to Git and should never be shared.
 
 ## 4. Apply Prisma Schema
 
@@ -46,7 +39,7 @@ npx prisma migrate dev --name init
 npm run db:seed
 ```
 
-Creates the admin account (using `.env` values) and sample posts.
+This inserts sample content. If you provided `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env`, the seed will create that account for your personal use.
 
 ## 6. Run the App
 
@@ -56,7 +49,7 @@ Development:
 npm run dev
 ```
 
-Open `http://localhost:3000`, admin dashboard at `/admin`.
+Open `http://localhost:3000`. (If you enabled the admin dashboard, it lives at `/admin`, protected by the credentials you set in `.env`.)
 
 Production preview:
 
@@ -71,6 +64,7 @@ If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill 
 
 - Do **not** commit `.env`; keep only `.env.example` in Git.
 - If credentials get exposed, rotate them (change DB password, update `.env`, re-seed if necessary).
+- The admin username/password live solely in `.env`; treat them like any other secret.
 
 ## 9. Useful Scripts
 
