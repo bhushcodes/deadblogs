@@ -1,0 +1,149 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Language {
+  marathi
+  hindi
+  english
+}
+
+enum PostType {
+  poem
+  short_story
+  prose
+  other
+}
+
+enum PostStatus {
+  draft
+  published
+}
+
+enum ReactionType {
+  like
+}
+
+enum ShareNetwork {
+  whatsapp
+  twitter
+  facebook
+  telegram
+  copy
+}
+
+enum CommentStatus {
+  pending
+  approved
+  rejected
+}
+
+enum UserRole {
+  admin
+}
+
+model Post {
+  id            String        @id @default(cuid())
+  title         String
+  slug          String        @unique
+  language      Language
+  type          PostType
+  excerpt       String
+  body          String
+  coverImageUrl String?
+  tags          String[]
+  isFeatured    Boolean       @default(false)
+  status        PostStatus    @default(draft)
+  publishedAt   DateTime?
+  readingTimeMinutes Int?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  reactions     Reaction[]
+  views         View[]
+  shareEvents   ShareEvent[]
+  comments      Comment[]
+
+  @@index([language, status])
+  @@index([language, type, status])
+  @@index([isFeatured, status])
+}
+
+model Reaction {
+  id          String       @id @default(cuid())
+  type        ReactionType
+  fingerprint String
+  postId      String
+  userId      String?
+  createdAt   DateTime     @default(now())
+
+  post Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, fingerprint, type])
+  @@index([postId, createdAt])
+}
+
+model View {
+  id          String    @id @default(cuid())
+  fingerprint String?
+  postId      String
+  createdAt   DateTime  @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId, createdAt])
+}
+
+model ShareEvent {
+  id        String       @id @default(cuid())
+  postId    String
+  network   ShareNetwork
+  createdAt DateTime     @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId, createdAt])
+  @@index([network, createdAt])
+}
+
+model Comment {
+  id        String         @id @default(cuid())
+  postId    String
+  authorName String
+  body      String
+  status    CommentStatus  @default(pending)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId, status, createdAt])
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         UserRole  @default(admin)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  reactions    Reaction[]
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json?
+  updatedAt DateTime @updatedAt
+}

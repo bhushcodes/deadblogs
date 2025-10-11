@@ -23,6 +23,7 @@ cp .env.example .env
 ```
 
 Edit `.env` and set:
+
 - `DATABASE_URL` — e.g. `postgresql://user:pass@localhost:5432/deadpoet_blog?schema=public`
 - `AUTH_SECRET` — long random string for session signing
 - `ADMIN_EMAIL`, `ADMIN_PASSWORD` — admin login credentials
