@@ -11,27 +11,12 @@ A vintage-themed literary site featuring original Marathi, Hindi, and English wr
 ## 2. Clone & Install
 
 ```bash
-git clone <repo-url> deadpoet
+git clone https://github.com/bhushcodes/deadblogs.git deadpoet
 cd deadpoet
 npm install
 ```
 
-## 3. Environment Variables
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and set:
-
-- `DATABASE_URL` — e.g. `postgresql://user:pass@localhost:5432/deadpoet_blog?schema=public`
-- `AUTH_SECRET` — long random string for session signing
-- `ADMIN_EMAIL`, `ADMIN_PASSWORD` — admin login credentials
-- `NEXT_PUBLIC_SITE_URL` — e.g. `http://localhost:3000`
-
-> URL-encode special characters in the password (`@` → `%40`).
-
-## 4. Prepare PostgreSQL (local example)
+## 3. Prepare PostgreSQL (local example)
 
 ```bash
 psql postgres
@@ -40,15 +25,22 @@ ALTER ROLE deadpoet WITH LOGIN;
 CREATE DATABASE deadpoet_blog OWNER deadpoet;
 ```
 
-Update `DATABASE_URL` in `.env` to match your actual credentials and host.
+Update `DATABASE_URL` to match your actual credentials and host. After the database is ready, create a `.env` file based on `.env.example` and fill in:
 
-## 5. Apply Prisma Schema
+- `DATABASE_URL`
+- `AUTH_SECRET`
+- `ADMIN_EMAIL` / `ADMIN_PASSWORD`
+- `NEXT_PUBLIC_SITE_URL`
+
+Remember to URL-encode special characters in the password (e.g., `@` → `%40`).
+
+## 4. Apply Prisma Schema
 
 ```bash
 npx prisma migrate dev --name init
 ```
 
-## 6. Seed Sample Data
+## 5. Seed Sample Data
 
 ```bash
 npm run db:seed
@@ -56,7 +48,7 @@ npm run db:seed
 
 Creates the admin account (using `.env` values) and sample posts.
 
-## 7. Run the App
+## 6. Run the App
 
 Development:
 
