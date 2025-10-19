@@ -11,52 +11,12 @@ A vintage-themed literary site featuring original Marathi, Hindi, and English wr
 ## 2. Clone & Install
 
 ```bash
-git clone <repo-url> deadpoet
+git clone https://github.com/bhushcodes/deadblogs.git deadpoet
 cd deadpoet
 npm install
 ```
 
-## 3. Environment Variables
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and set:
-
-- `DATABASE_URL` — e.g. `postgresql://user:pass@localhost:5432/deadpoet_blog?schema=public`
-- `AUTH_SECRET` — long random string for session signing
-- `ADMIN_EMAIL`, `ADMIN_PASSWORD` — admin login credentials
-- `NEXT_PUBLIC_SITE_URL` — e.g. `http://localhost:3000`
-
-> URL-encode special characters in the password (`@` → `%40`).
-
-## 4. Prepare PostgreSQL (local example)
-
-```bash
-psql postgres
-CREATE USER deadpoet WITH PASSWORD 'Deadpoet@123';
-ALTER ROLE deadpoet WITH LOGIN;
-CREATE DATABASE deadpoet_blog OWNER deadpoet;
-```
-
-Update `DATABASE_URL` in `.env` to match your actual credentials and host.
-
-## 5. Apply Prisma Schema
-
-```bash
-npx prisma migrate dev --name init
-```
-
-## 6. Seed Sample Data
-
-```bash
-npm run db:seed
-```
-
-Creates the admin account (using `.env` values) and sample posts.
-
-## 7. Run the App
+## 3. Run the App
 
 Development:
 
@@ -64,7 +24,7 @@ Development:
 npm run dev
 ```
 
-Open `http://localhost:3000`, admin dashboard at `/admin`.
+Open `http://localhost:3000`.
 
 Production preview:
 
@@ -75,12 +35,7 @@ npm start
 
 If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill <pid>`), or run with `PORT=3001 npm start`.
 
-## 8. Keep Secrets Safe
-
-- Do **not** commit `.env`; keep only `.env.example` in Git.
-- If credentials get exposed, rotate them (change DB password, update `.env`, re-seed if necessary).
-
-## 9. Useful Scripts
+## 4. Useful Scripts
 
 | Command           | Description                           |
 | ----------------- | ------------------------------------- |
@@ -89,7 +44,7 @@ If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill 
 | `npm run build`   | Production build (Turbopack)          |
 | `npm run db:seed` | Seed or re-seed admin + sample posts  |
 
-## 10. Deployment Notes
+## 5. Deployment Notes
 
 - Provide the same environment variables on your hosting platform.
 - Ensure PostgreSQL is reachable from the deployed app.
