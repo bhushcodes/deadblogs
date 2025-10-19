@@ -15,7 +15,7 @@ export function PostBody({ content, language, type }: PostBodyProps) {
   const fontClass = getBodyFontClass(language);
   const isPoem = type === 'poem';
 
-  const wrapperClass = ['max-w-none text-[var(--color-ink)]', fontClass, isPoem ? 'poem-formatting' : 'article-body']
+  const wrapperClass = ['max-w-none text-black', fontClass, isPoem ? 'poem-formatting' : 'article-body']
     .filter(Boolean)
     .join(' ');
 
@@ -27,7 +27,7 @@ export function PostBody({ content, language, type }: PostBodyProps) {
         components={{
           p(props) {
             const className = [
-              'leading-7 text-[var(--color-ink)]',
+              'leading-7 text-black',
               fontClass,
               isPoem ? 'whitespace-pre-wrap text-base leading-7' : '',
             ]
@@ -36,10 +36,10 @@ export function PostBody({ content, language, type }: PostBodyProps) {
             return <p {...props} className={className} />;
           },
           h2(props) {
-            return <h2 {...props} className={['mt-10 font-heading-english text-3xl', fontClass].join(' ')} />;
+            return <h2 {...props} className={['mt-10 font-heading-english text-3xl font-bold', fontClass].join(' ')} />;
           },
           h3(props) {
-            return <h3 {...props} className={['mt-8 font-heading-english text-2xl', fontClass].join(' ')} />;
+            return <h3 {...props} className={['mt-8 font-heading-english text-2xl font-bold', fontClass].join(' ')} />;
           },
           li(props) {
             return <li {...props} className={['ml-4 list-disc pb-1', fontClass].join(' ')} />;

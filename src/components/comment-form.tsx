@@ -13,32 +13,32 @@ export function CommentForm({ postId, slug }: { postId: string; slug: string }) 
     <form action={formAction} className="space-y-4">
       <input type="hidden" name="postId" value={postId} />
       <input type="hidden" name="slug" value={slug} />
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+      <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
         Name
         <input
           type="text"
           name="authorName"
           required
-          className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+          className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           placeholder="Your name"
         />
       </label>
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+      <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
         Comment
         <textarea
           name="body"
           rows={4}
           required
-          className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+          className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           placeholder="Share your thoughts"
         />
       </label>
       {state.status === 'success' ? (
-        <p className="rounded-full border border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.7)] px-4 py-2 text-xs text-[var(--color-muted)]">
+        <p className="border-2 border-black bg-[var(--color-accent-success)] px-4 py-2 text-xs font-medium text-black">
           {state.message}
         </p>
       ) : state.status === 'error' ? (
-        <p className="text-xs text-red-600">{state.message}</p>
+        <p className="border-2 border-black bg-[var(--color-accent-secondary)] px-4 py-2 text-xs font-medium text-black">{state.message}</p>
       ) : null}
       <SubmitButton />
     </form>
@@ -51,7 +51,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)] disabled:opacity-60"
+      className="border-2 border-black bg-[var(--color-accent-secondary)] px-6 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-primary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] disabled:opacity-60 disabled:cursor-not-allowed"
     >
       {pending ? 'Sending…' : 'Submit comment'}
     </button>

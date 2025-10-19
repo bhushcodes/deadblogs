@@ -34,13 +34,13 @@ export function PostLikeButton({
       disabled={isPending}
       aria-pressed={liked}
       className={[
-        'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs uppercase tracking-[0.3em] transition',
+        'inline-flex items-center gap-2 border-2 border-black px-4 py-2 text-xs font-bold uppercase shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]',
         liked
-          ? 'border-[var(--color-accent)] bg-[rgba(123,63,75,0.15)] text-[var(--color-accent)]'
-          : 'border-[var(--color-muted)]/40 bg-[rgba(255,255,255,0.6)] text-[var(--color-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]',
+          ? 'bg-[var(--color-accent-secondary)] text-black hover:bg-[var(--color-accent-primary)]'
+          : 'bg-white text-black hover:bg-[var(--color-accent-secondary)] hover:text-black',
       ].join(' ')}
     >
-      <HeartIcon filled={liked} className={liked ? 'text-[var(--color-accent)]' : ''} />
+      <HeartIcon filled={liked} className={liked ? 'text-black' : ''} />
       {count} {count === 1 ? 'Like' : 'Likes'}
     </button>
   );

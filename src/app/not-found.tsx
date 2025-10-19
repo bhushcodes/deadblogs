@@ -2,23 +2,24 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center gap-6 text-center">
-      <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-muted)]">404</p>
-      <h1 className="font-serif text-4xl text-[var(--color-ink)]">The page you seek is lost in the archives</h1>
-      <p className="max-w-xl text-sm leading-relaxed text-[var(--color-muted)]">
-        Perhaps the post has been unpublished, or the link has aged beyond recognition. Use the
-        archive or language pages to continue your literary journey.
+    <div className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center gap-8 text-center">
+      <div className="inline-block border-2 border-black bg-[var(--color-accent-secondary)] px-6 py-3 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+        <p className="text-6xl font-bold uppercase text-white">404</p>
+      </div>
+      <h1 className="text-4xl font-bold text-black md:text-5xl">Page Not Found</h1>
+      <p className="max-w-xl text-base leading-relaxed text-black">
+        The page you're looking for doesn't exist or has been moved. Use the buttons below to continue your literary journey.
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/"
-          className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.1)] px-6 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)]"
+          className="border-2 border-black bg-[var(--color-accent-primary)] px-6 py-3 text-sm font-bold uppercase text-white shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]"
         >
           Return Home
         </Link>
         <Link
           href="/posts"
-          className="rounded-full border border-[var(--color-muted)]/40 px-6 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+          className="border-2 border-black bg-[var(--color-accent-tertiary)] px-6 py-3 text-sm font-bold uppercase text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-success)] hover:text-white hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]"
         >
           Browse Archive
         </Link>

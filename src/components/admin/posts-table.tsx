@@ -67,7 +67,7 @@ export function PostsTable({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.7)] px-4 py-3 text-sm text-[var(--color-muted)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-black bg-white px-4 py-3 text-sm font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
         <span>
           {selected.length} selected · {total} total
         </span>
@@ -75,7 +75,7 @@ export function PostsTable({
           <select
             value={bulkAction}
             onChange={(event) => setBulkAction(event.target.value)}
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-xs uppercase tracking-[0.25em]"
+            className="border-2 border-black bg-white px-4 py-2 text-xs font-bold uppercase text-black"
           >
             <option value="">Bulk action…</option>
             <option value="publish">Publish</option>
@@ -88,15 +88,15 @@ export function PostsTable({
             type="button"
             onClick={handleBulk}
             disabled={!bulkAction || selected.length === 0 || isPending}
-            className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)] disabled:opacity-60"
+            className="border-2 border-black bg-[var(--color-accent-primary)] px-4 py-2 text-xs font-bold uppercase text-white shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] disabled:opacity-60"
           >
             Apply
           </button>
         </div>
       </div>
-      <div className="overflow-x-auto rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.8)] shadow-[var(--shadow-card)]">
-        <table className="min-w-full divide-y divide-black/10 text-sm">
-          <thead className="bg-[rgba(233,223,201,0.6)] text-left uppercase tracking-[0.25em] text-[var(--color-muted)]">
+      <div className="overflow-x-auto border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+        <table className="min-w-full divide-y-2 divide-black text-sm">
+          <thead className="bg-[var(--color-accent-tertiary)] text-left font-bold uppercase text-black">
             <tr>
               <th className="px-4 py-3">
                 <input type="checkbox" checked={allSelected} onChange={toggleAll} />
@@ -109,9 +109,9 @@ export function PostsTable({
               <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-black/10">
+          <tbody className="divide-y-2 divide-black">
             {posts.map((post) => (
-              <tr key={post.id} className="hover:bg-[rgba(233,223,201,0.25)]">
+              <tr key={post.id} className="hover:bg-[var(--color-accent-tertiary)]/20">
                 <td className="px-4 py-3">
                   <input
                     type="checkbox"
@@ -121,26 +121,26 @@ export function PostsTable({
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-col">
-                    <span className="font-medium text-[var(--color-ink)]">{post.title}</span>
-                    <span className="text-xs text-[var(--color-muted)]">/{post.slug}</span>
+                    <span className="font-bold text-black">{post.title}</span>
+                    <span className="text-xs text-black">/{post.slug}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-xs uppercase tracking-[0.25em] text-[var(--color-muted)]">
+                <td className="px-4 py-3 text-xs font-bold uppercase text-black">
                   {post.status}
-                  {post.isFeatured ? <span className="ml-2 rounded-full bg-[rgba(123,63,75,0.15)] px-2 py-1">Featured</span> : null}
+                  {post.isFeatured ? <span className="ml-2 border-2 border-black bg-[var(--color-accent-secondary)] px-2 py-1 text-white">Featured</span> : null}
                 </td>
-                <td className="px-4 py-3 text-xs uppercase tracking-[0.25em] text-[var(--color-muted)]">
+                <td className="px-4 py-3 text-xs font-bold uppercase text-black">
                   {post.language} · {post.type.replace('_', ' ')}
                 </td>
-                <td className="px-4 py-3 text-xs text-[var(--color-muted)]">
+                <td className="px-4 py-3 text-xs text-black">
                   ❤ {post._count.reactions} · ↗ {post._count.shareEvents} · 💬 {post._count.comments}
                 </td>
-                <td className="px-4 py-3 text-xs text-[var(--color-muted)]">{post.updatedLabel}</td>
+                <td className="px-4 py-3 text-xs text-black">{post.updatedLabel}</td>
                 <td className="px-4 py-3 text-xs">
                   <div className="flex flex-wrap gap-2">
                     <Link
                       href={`/admin/posts/${post.id}/edit`}
-                      className="rounded-full border border-[var(--color-muted)]/40 px-3 py-1 uppercase tracking-[0.25em] text-[var(--color-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+                      className="border-2 border-black bg-white px-3 py-1 text-xs font-bold uppercase text-black transition-all hover:bg-[var(--color-accent-primary)] hover:text-white hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       Edit
                     </Link>
@@ -151,7 +151,7 @@ export function PostsTable({
                           bulkPostAction({ ids: [post.id], action: post.status === 'published' ? 'unpublish' : 'publish' }),
                         )
                       }
-                      className="rounded-full border border-[var(--color-muted)]/40 px-3 py-1 uppercase tracking-[0.25em] text-[var(--color-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+                      className="border-2 border-black bg-white px-3 py-1 text-xs font-bold uppercase text-black transition-all hover:bg-[var(--color-accent-primary)] hover:text-white hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       {post.status === 'published' ? 'Unpublish' : 'Publish'}
                     </button>
@@ -162,7 +162,7 @@ export function PostsTable({
                           bulkPostAction({ ids: [post.id], action: post.isFeatured ? 'unfeature' : 'feature' }),
                         )
                       }
-                      className="rounded-full border border-[var(--color-muted)]/40 px-3 py-1 uppercase tracking-[0.25em] text-[var(--color-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+                      className="border-2 border-black bg-white px-3 py-1 text-xs font-bold uppercase text-black transition-all hover:bg-[var(--color-accent-primary)] hover:text-white hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       {post.isFeatured ? 'Unfeature' : 'Feature'}
                     </button>
@@ -173,7 +173,7 @@ export function PostsTable({
                           await deletePostAction(post.id);
                         })
                       }
-                      className="rounded-full border border-red-200 px-3 py-1 uppercase tracking-[0.25em] text-red-600 hover:bg-red-50"
+                      className="border-2 border-black bg-red-600 px-3 py-1 text-xs font-bold uppercase text-white transition-all hover:bg-red-700 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       Delete
                     </button>
@@ -185,29 +185,29 @@ export function PostsTable({
         </table>
       </div>
       {totalPages > 1 ? (
-        <div className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-[var(--color-muted)]">
+        <div className="flex items-center justify-center gap-3 text-xs font-bold uppercase text-black">
           {page > 1 ? (
             <Link
               href={prevHref}
-              className="rounded-full border border-[var(--color-muted)]/40 px-3 py-1 hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+              className="border-2 border-black bg-[var(--color-accent-primary)] px-4 py-2 text-white shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               Previous
             </Link>
           ) : (
-            <span className="rounded-full border border-black/10 px-3 py-1 text-black/30">Previous</span>
+            <span className="cursor-not-allowed border-2 border-black bg-[var(--color-accent-tertiary)] px-4 py-2 text-black opacity-50">Previous</span>
           )}
-          <span>
+          <span className="font-bold">
             Page {page} of {totalPages}
           </span>
           {page < totalPages ? (
             <Link
               href={nextHref}
-              className="rounded-full border border-[var(--color-muted)]/40 px-3 py-1 hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+              className="border-2 border-black bg-[var(--color-accent-primary)] px-4 py-2 text-white shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               Next
             </Link>
           ) : (
-            <span className="rounded-full border border-black/10 px-3 py-1 text-black/30">Next</span>
+            <span className="cursor-not-allowed border-2 border-black bg-[var(--color-accent-tertiary)] px-4 py-2 text-black opacity-50">Next</span>
           )}
         </div>
       ) : null}

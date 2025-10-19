@@ -75,12 +75,12 @@ export function LanguageFilters(props: LanguageFiltersProps) {
   }, [pathname, query, router]);
 
   return (
-    <div className="rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.6)] p-6 shadow-[var(--shadow-card)]">
+    <div className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
       <div className="grid gap-4 md:grid-cols-4">
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Genre
           <select
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
             value={selectedType ?? 'all'}
             onChange={(event) => updateQuery('type', event.target.value === 'all' ? null : event.target.value)}
           >
@@ -92,10 +92,10 @@ export function LanguageFilters(props: LanguageFiltersProps) {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Year
           <select
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
             value={selectedYear ?? 'all'}
             onChange={(event) => updateQuery('year', event.target.value === 'all' ? null : event.target.value)}
           >
@@ -107,10 +107,10 @@ export function LanguageFilters(props: LanguageFiltersProps) {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Sort
           <select
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
             value={selectedSort}
             onChange={(event) => updateQuery('sort', event.target.value)}
           >
@@ -124,14 +124,14 @@ export function LanguageFilters(props: LanguageFiltersProps) {
         <button
           type="button"
           onClick={clearFilters}
-          className="self-end rounded-full border border-[var(--color-muted)]/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+          className="self-end border-2 border-black bg-white px-4 py-2 text-xs font-bold uppercase transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
         >
           Clear Filters
         </button>
       </div>
       {availableTags.length ? (
         <div className="mt-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">Tags</p>
+          <p className="text-xs font-bold uppercase text-black">Tags</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {availableTags.map((tag) => {
               const active = selectedTags.includes(tag);
@@ -141,10 +141,10 @@ export function LanguageFilters(props: LanguageFiltersProps) {
                   key={tag}
                   onClick={() => toggleTag(tag)}
                   className={[
-                    'rounded-full border px-4 py-2 text-xs uppercase tracking-[0.3em] transition',
+                    'border-2 border-black px-3 py-1.5 text-xs font-medium uppercase transition-all',
                     active
-                      ? 'border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] text-[var(--color-accent)]'
-                      : 'border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.6)] text-[var(--color-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]',
+                      ? 'bg-[var(--color-accent-primary)] text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[var(--color-accent-secondary)]'
+                      : 'bg-[var(--color-accent-tertiary)] text-black hover:bg-[var(--color-accent-primary)]',
                   ].join(' ')}
                 >
                   {tag}

@@ -21,25 +21,25 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
   return (
     <form
       method="get"
-      className="rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.6)] p-6 shadow-[var(--shadow-card)]"
+      className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]"
     >
       <div className="grid gap-4 md:grid-cols-3">
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Search
           <input
             type="search"
             name="search"
             defaultValue={values.search ?? ''}
             placeholder="Title, tag, or keyword"
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           />
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Language
           <select
             name="language"
             defaultValue={values.language ?? 'all'}
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           >
             <option value="all">All</option>
             {LANGUAGES.map((language) => (
@@ -49,12 +49,12 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Genre
           <select
             name="type"
             defaultValue={values.type ?? 'all'}
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           >
             <option value="all">All</option>
             {POST_TYPES.map((type) => (
@@ -64,12 +64,12 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Year
           <select
             name="year"
             defaultValue={values.year ?? 'all'}
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           >
             <option value="all">All</option>
             {availableYears.map((year) => (
@@ -79,12 +79,12 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex flex-col gap-2 text-xs font-medium uppercase text-black">
           Sort
           <select
             name="sort"
             defaultValue={values.sort ?? 'newest'}
-            className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+            className="border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
           >
             {SORT_OPTIONS.map((option) => (
               <option key={option.id} value={option.id}>
@@ -93,13 +93,13 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
             ))}
           </select>
         </label>
-        <label className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+        <label className="flex items-center gap-2 text-xs font-medium uppercase text-black">
           <input
             type="checkbox"
             name="featured"
             value="true"
             defaultChecked={values.featured}
-            className="h-4 w-4 rounded border border-black/30"
+            className="h-4 w-4 border-2 border-black accent-[var(--color-accent)]"
           />
           Featured only
         </label>
@@ -107,19 +107,19 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
 
       {availableTags.length ? (
         <div className="mt-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">Tags</p>
+          <p className="text-xs font-bold uppercase text-black">Tags</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {availableTags.map((tag) => (
               <label
                 key={tag}
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.6)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]"
+                className="inline-flex items-center gap-2 border-2 border-black bg-white px-3 py-1.5 text-xs font-medium uppercase"
               >
                 <input
                   type="checkbox"
                   name="tags"
                   value={tag}
                   defaultChecked={selectedTags.has(tag)}
-                  className="h-4 w-4 rounded border border-black/30"
+                  className="h-4 w-4 border-2 border-black accent-[var(--color-accent)]"
                 />
                 #{tag}
               </label>
@@ -131,13 +131,13 @@ export function ArchiveFilters({ values, availableTags, availableYears }: {
       <div className="mt-6 flex items-center justify-end gap-3">
         <Link
           href="/posts"
-          className="rounded-full border border-[var(--color-muted)]/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+          className="border-2 border-black bg-[var(--color-accent-tertiary)] px-5 py-2 text-xs font-bold uppercase text-black transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:text-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
         >
           Reset
         </Link>
         <button
           type="submit"
-          className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-6 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)]"
+          className="border-2 border-black bg-[var(--color-accent-primary)] px-6 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-success)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
         >
           Apply Filters
         </button>

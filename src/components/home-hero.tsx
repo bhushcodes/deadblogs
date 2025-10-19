@@ -2,43 +2,55 @@ import Link from 'next/link';
 
 export function HomeHero() {
   return (
-    <section className="relative overflow-hidden rounded-[28px] border border-black/10 bg-[rgba(247,239,224,0.92)] px-8 py-12 shadow-[var(--shadow-card)] md:px-14 md:py-16">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(123,63,75,0.08),transparent_55%),radial-gradient(circle_at_80%_10%,rgba(63,107,115,0.08),transparent_55%)]" />
-      <div className="relative flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-        <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-muted)]/30 bg-[rgba(255,255,255,0.6)] px-4 py-1 text-xs uppercase tracking-[0.3em] text-[var(--color-accent-muted)]">
-            Vintage Literary Journal
+    <section className="relative overflow-hidden border-2 border-black bg-white p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] md:p-12">
+      <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+        <div className="flex-1">
+          <span className="inline-block border-2 border-black bg-[var(--color-accent-tertiary)] px-3 py-1.5 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            Literary Journal
           </span>
-          <h1 className="mt-6 font-serif text-4xl leading-tight text-[var(--color-ink)] md:text-[44px]">
-            Words on parchment. Stories in sepia. Poetry that lingers.
+          <h1 className="mt-6 text-3xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
+            Words that resonate.<br />
+            Stories that stay.<br />
+            Poetry that moves.
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
-            Wander through DEADPOET&apos;s handpicked poems, short stories, and prose across Marathi,
-            Hindi, and English. Every piece is unique—never a translation—curated with care for the
-            vintage soul.
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-black md:text-lg">
+            Discover DEADPOET&apos;s curated collection of poems, short stories, and prose across Marathi,
+            Hindi, and English. Every piece is unique, never translated, crafted with care.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/marathi"
-              className="inline-flex items-center justify-center rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.1)] px-6 py-3 text-sm uppercase tracking-[0.3em] text-[var(--color-accent)] transition-colors hover:bg-[rgba(123,63,75,0.18)]"
+              className="inline-flex items-center justify-center border-2 border-black bg-[var(--color-accent-primary)] px-6 py-3 text-sm font-bold uppercase text-white shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:text-white hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]"
             >
               Explore Marathi
             </Link>
             <Link
               href="/posts"
-              className="inline-flex items-center justify-center rounded-full border border-[var(--color-muted)]/40 px-6 py-3 text-sm uppercase tracking-[0.3em] text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+              className="inline-flex items-center justify-center border-2 border-black bg-[var(--color-accent-tertiary)] px-6 py-3 text-sm font-bold uppercase text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-success)] hover:text-white hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]"
             >
               Browse All Posts
             </Link>
           </div>
         </div>
-        <div className="flex-1 rounded-[24px] border border-black/10 bg-[rgba(255,255,255,0.5)] p-6 text-sm text-[var(--color-muted)] shadow-inner">
-          <p className="font-serif text-lg text-[var(--color-ink)]">What&apos;s inside:</p>
-          <ul className="mt-4 space-y-3 leading-relaxed">
-            <li>• Carefully crafted poems with preserved line breaks.</li>
-            <li>• Short stories steeped in nostalgia and vernacular charm.</li>
-            <li>• Vintage aesthetics with language-appropriate typography.</li>
-            <li>• Likes, shares, and optional comments from fellow readers.</li>
+        <div className="flex-1 border-2 border-black bg-white p-6">
+          <p className="text-lg font-bold text-black">What&apos;s inside:</p>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-black">
+            <li className="flex items-start gap-2">
+              <span className="mt-1 text-black">▸</span>
+              <span>Carefully crafted poems with preserved line breaks</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1 text-black">▸</span>
+              <span>Short stories steeped in nostalgia and vernacular charm</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1 text-black">▸</span>
+              <span>Clean design with language-appropriate typography</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1 text-black">▸</span>
+              <span>Likes, shares, and optional comments from readers</span>
+            </li>
           </ul>
         </div>
       </div>

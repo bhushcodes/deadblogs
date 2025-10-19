@@ -14,10 +14,10 @@ export default async function TagsIndexPage() {
 
   return (
     <div className="space-y-10">
-      <div className="border-b border-black/10 pb-6">
-        <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-muted)]">Taxonomy</p>
-        <h1 className="mt-2 font-serif text-4xl text-[var(--color-ink)]">Browse by tag</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--color-muted)]">
+      <div className="border-b-2 border-black pb-6">
+        <p className="text-xs font-medium uppercase tracking-wide text-black">Taxonomy</p>
+        <h1 className="mt-2 text-4xl font-bold text-black">Browse by tag</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black">
           Tags help readers quickly find poems and stories by theme. Each language collection has its
           own tag set. Select a tag to explore all posts that share it.
         </p>
@@ -27,23 +27,23 @@ export default async function TagsIndexPage() {
         {tagsByLanguage.map(({ language, tags }) => (
           <section
             key={language.id}
-            className="rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.6)] p-6 shadow-[var(--shadow-card)]"
+            className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]"
           >
-            <h2 className="font-serif text-2xl text-[var(--color-ink)]">{language.label}</h2>
+            <h2 className="text-2xl font-bold text-black">{language.label}</h2>
             {tags.length ? (
               <div className="mt-4 flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <Link
                     key={tag}
                     href={`/tags/${encodeURIComponent(tag)}?language=${language.slug}`}
-                    className="rounded-full border border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.6)] px-4 py-1 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+                    className="border-2 border-black bg-white px-3 py-1 text-xs font-medium uppercase transition-all hover:bg-[var(--color-accent-primary)] hover:text-white"
                   >
                     #{tag}
                   </Link>
                 ))}
               </div>
             ) : (
-              <p className="mt-3 text-sm text-[var(--color-muted)]">No tags yet.</p>
+              <p className="mt-3 text-sm text-black">No tags yet.</p>
             )}
           </section>
         ))}

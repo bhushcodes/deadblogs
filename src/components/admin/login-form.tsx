@@ -12,40 +12,40 @@ export function LoginForm() {
   return (
     <form
       action={formAction}
-      className="mx-auto flex w-full max-w-md flex-col gap-6 rounded-[24px] border border-black/10 bg-[rgba(255,255,255,0.7)] px-8 py-10 shadow-[var(--shadow-card)]"
+      className="mx-auto flex w-full max-w-md flex-col gap-6 border-2 border-black bg-white px-8 py-10 shadow-[6px_6px_0px_rgba(0,0,0,1)]"
     >
       <div>
-        <h1 className="font-serif text-3xl text-[var(--color-ink)]">Admin Sign In</h1>
-        <p className="mt-2 text-sm text-[var(--color-muted)]">
+        <h1 className="text-3xl font-bold text-black">Admin Sign In</h1>
+        <p className="mt-2 text-sm text-black">
           Enter your credentials to access the writing desk.
         </p>
       </div>
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+      <label className="flex flex-col gap-2 text-xs font-bold uppercase text-black">
         Email
         <input
           type="email"
           name="email"
           required
-          className="rounded-full border border-black/20 bg-white px-4 py-3 text-sm text-[var(--color-ink)]"
+          className="border-2 border-black bg-white px-4 py-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
         />
         {state.fieldErrors?.email ? (
-          <span className="text-xs text-red-600">{state.fieldErrors.email}</span>
+          <span className="text-xs font-medium text-red-600">{state.fieldErrors.email}</span>
         ) : null}
       </label>
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+      <label className="flex flex-col gap-2 text-xs font-bold uppercase text-black">
         Password
         <input
           type="password"
           name="password"
           required
-          className="rounded-full border border-black/20 bg-white px-4 py-3 text-sm text-[var(--color-ink)]"
+          className="border-2 border-black bg-white px-4 py-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
         />
         {state.fieldErrors?.password ? (
-          <span className="text-xs text-red-600">{state.fieldErrors.password}</span>
+          <span className="text-xs font-medium text-red-600">{state.fieldErrors.password}</span>
         ) : null}
       </label>
       {state.status === 'error' && state.message ? (
-        <p className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-xs text-red-700">
+        <p className="border-2 border-black bg-[var(--color-accent-secondary)] px-4 py-3 text-xs font-medium text-white">
           {state.message}
         </p>
       ) : null}
@@ -60,7 +60,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-6 py-3 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)] disabled:opacity-60"
+      className="border-2 border-black bg-[var(--color-accent-primary)] px-6 py-3 text-sm font-bold uppercase text-white shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] disabled:opacity-60"
     >
       {pending ? 'Signing in…' : 'Sign In'}
     </button>

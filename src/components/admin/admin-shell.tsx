@@ -11,42 +11,42 @@ export function AdminShell({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-[rgba(244,233,216,0.6)]">
-      <aside className="hidden w-64 flex-shrink-0 flex-col border-r border-black/10 bg-[rgba(233,223,201,0.7)] px-6 py-8 lg:flex">
-        <Link href="/admin" className="text-lg font-semibold uppercase tracking-[0.35em] text-[var(--color-muted)]">
+    <div className="flex min-h-screen bg-white">
+      <aside className="hidden w-64 flex-shrink-0 flex-col border-r-2 border-black bg-white px-6 py-8 lg:flex">
+        <Link href="/admin" className="text-lg font-bold uppercase tracking-tight text-black">
           Writing Desk
         </Link>
-        <p className="mt-6 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">Navigation</p>
+        <p className="mt-6 text-xs font-bold uppercase tracking-wide text-black">Navigation</p>
         <div className="mt-3 flex-1">
           <AdminNav />
         </div>
-        <div className="mt-auto space-y-2 text-xs text-[var(--color-muted)]">
-          <p className="break-all">{user.email}</p>
+        <div className="mt-auto space-y-2 text-xs text-black">
+          <p className="break-all font-medium">{user.email}</p>
           <LogoutButton />
         </div>
       </aside>
       <div className="flex flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-black/10 bg-[rgba(255,255,255,0.7)] px-6 py-4">
+        <header className="flex items-center justify-between border-b-2 border-black bg-white px-6 py-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">Admin Dashboard</p>
-            <h1 className="font-serif text-2xl text-[var(--color-ink)]">DEADPOET</h1>
+            <p className="text-xs font-bold uppercase tracking-wide text-black">Admin Dashboard</p>
+            <h1 className="text-2xl font-bold text-black">DEADPOET</h1>
           </div>
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="rounded-full border border-[var(--color-muted)]/30 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+              className="border-2 border-black bg-white px-4 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               View site
             </Link>
             <Link
               href="/admin/posts/new"
-              className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)]"
+              className="border-2 border-black bg-[var(--color-accent-primary)] px-4 py-2 text-xs font-bold uppercase text-white shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               New post
             </Link>
           </div>
         </header>
-        <main className="flex-1 overflow-y-auto bg-[rgba(244,233,216,0.2)] px-6 py-8">
+        <main className="flex-1 overflow-y-auto bg-white px-6 py-8">
           <div className="mx-auto w-full max-w-6xl space-y-8">{children}</div>
         </main>
       </div>

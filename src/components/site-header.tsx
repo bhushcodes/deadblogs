@@ -9,22 +9,24 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-black/10 bg-[rgba(244,233,216,0.96)] backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+    <header className="sticky top-0 z-40 border-b-2 border-black bg-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/" className="flex flex-col text-xl font-semibold uppercase tracking-[0.35em] text-[var(--color-muted)]">
-            <span className="font-serif text-2xl text-[var(--color-ink)]">DEADPOET</span>
-            <span className="text-xs font-light uppercase tracking-[0.6em] text-[var(--color-muted)]">
-              Poems & Stories
+          <Link href="/" className="flex flex-col">
+            <span className="text-2xl font-bold uppercase tracking-tight text-black sm:text-3xl">
+              DEADPOET
+            </span>
+            <span className="text-xs font-medium uppercase tracking-wider text-black">
+              Poetry & Stories
             </span>
           </Link>
         </div>
-        <nav className="flex flex-wrap items-center justify-start gap-x-6 gap-y-2 text-sm uppercase tracking-[0.2em] text-[var(--color-muted)] md:text-xs">
+        <nav className="flex flex-wrap items-center justify-start gap-x-5 gap-y-3 text-sm font-medium uppercase">
           {LANGUAGES.map((language) => (
             <Link
               key={language.id}
               href={`/${language.slug}`}
-              className="transition-colors hover:text-[var(--color-accent)]"
+              className="border-b-2 border-transparent transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
             >
               {language.label}
             </Link>
@@ -33,18 +35,18 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-[var(--color-accent)]"
+              className="border-b-2 border-transparent transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <form action="/posts" className="flex h-10 items-center rounded-full border border-black/10 bg-[rgba(255,255,255,0.7)] px-3">
+        <form action="/posts" className="flex h-11 items-center border-2 border-black bg-white px-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]">
           <input
             type="search"
             name="search"
-            placeholder="Search the archive"
-            className="w-40 bg-transparent text-sm text-[var(--color-muted)] outline-none placeholder:text-[var(--color-muted)]/60"
+            placeholder="Search..."
+            className="w-36 bg-transparent text-sm font-medium outline-none placeholder:text-black/50 sm:w-44"
           />
         </form>
       </div>

@@ -100,7 +100,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       {message ? (
-        <p className="rounded-full border border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.6)] px-4 py-2 text-xs text-[var(--color-muted)]">
+        <p className="border-2 border-black bg-[var(--color-accent-success)] px-4 py-2 text-xs font-bold text-white">
           {message}
         </p>
       ) : null}
@@ -110,7 +110,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <input
               type="text"
               {...form.register('title')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               placeholder="Post title"
             />
           </Field>
@@ -118,7 +118,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <input
               type="text"
               {...form.register('slug')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               placeholder="auto-generated"
             />
           </Field>
@@ -126,7 +126,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <Field label="Language">
               <select
                 {...form.register('language')}
-                className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+                className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               >
                 {LANGUAGES.map((language) => (
                   <option key={language.id} value={language.id}>
@@ -138,7 +138,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <Field label="Type">
               <select
                 {...form.register('type')}
-                className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+                className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               >
                 {POST_TYPES.map((type) => (
                   <option key={type.id} value={type.id}>
@@ -152,14 +152,14 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <textarea
               rows={4}
               {...form.register('excerpt')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
             />
           </Field>
           <Field label="Tags (comma separated)">
             <input
               type="text"
               {...form.register('tagsText')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               placeholder="nostalgia, ghazal, monsoon"
             />
           </Field>
@@ -167,7 +167,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <input
               type="url"
               {...form.register('coverImageUrl')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               placeholder="https://…"
             />
           </Field>
@@ -177,7 +177,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <textarea
               rows={20}
               {...form.register('body')}
-              className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)] font-body-english"
+              className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black font-body-english focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               placeholder="Write using Markdown. Use blank lines to separate stanzas."
             />
           </Field>
@@ -185,7 +185,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             <Field label="Status">
               <select
                 {...form.register('status')}
-                className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+                className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               >
                 {statusOptions.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -198,11 +198,11 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
               <input
                 type="datetime-local"
                 {...form.register('publishedAt')}
-                className="w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm text-[var(--color-ink)]"
+                className="w-full border-2 border-black bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
               />
             </Field>
           </div>
-          <label className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+          <label className="flex items-center gap-2 text-xs font-bold uppercase text-black">
             <input type="checkbox" {...form.register('isFeatured')} /> Featured on homepage
           </label>
         </div>
@@ -211,7 +211,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-6 py-3 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)] disabled:opacity-60"
+          className="border-2 border-black bg-[var(--color-accent-primary)] px-6 py-3 text-sm font-bold uppercase text-white shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] disabled:opacity-60"
         >
           {isPending ? 'Saving…' : watchStatus === 'published' ? 'Save & Publish' : 'Save Draft'}
         </button>
@@ -220,7 +220,7 @@ export function PostEditorForm({ initialValues }: { initialValues: Partial<PostE
             href={`/post/${initialValues.slug}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-[var(--color-muted)]/40 px-6 py-3 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+            className="border-2 border-black bg-white px-6 py-3 text-sm font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
           >
             View live
           </a>
@@ -240,7 +240,7 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+    <label className="flex flex-col gap-2 text-xs font-bold uppercase text-black">
       <span>{label}</span>
       {children}
       {error ? <span className="text-xs text-red-600">{error}</span> : null}

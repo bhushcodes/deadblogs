@@ -45,7 +45,7 @@ export default async function HomePage() {
             featured.length > FEATURED_LIMIT ? (
               <Link
                 href="/posts?featured=true"
-                className="rounded-full border border-[var(--color-muted)]/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+                className="border-2 border-black bg-[var(--color-accent-primary)] px-5 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
               >
                 View all featured
               </Link>
@@ -59,9 +59,11 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p className="rounded-[18px] border border-dashed border-black/20 bg-[rgba(255,255,255,0.45)] p-8 text-center text-sm text-[var(--color-muted)]">
-            Featured selections will appear here once you mark posts as featured.
-          </p>
+          <div className="border-2 border-black bg-[var(--color-accent-tertiary)] p-8 text-center">
+            <p className="text-sm font-medium text-black">
+              Featured selections will appear here once you mark posts as featured.
+            </p>
+          </div>
         )}
       </section>
 
@@ -72,7 +74,7 @@ export default async function HomePage() {
           actions={
             <Link
               href="/posts"
-              className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.1)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)]"
+              className="border-2 border-black bg-[var(--color-accent-secondary)] px-5 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-primary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               Browse archive
             </Link>
@@ -85,9 +87,11 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p className="rounded-[18px] border border-dashed border-black/20 bg-[rgba(255,255,255,0.45)] p-8 text-center text-sm text-[var(--color-muted)]">
-            No published posts yet. Once you publish a post it will appear here.
-          </p>
+          <div className="border-2 border-black bg-[var(--color-accent-tertiary)] p-8 text-center">
+            <p className="text-sm font-medium text-black">
+              No published posts yet. Once you publish a post it will appear here.
+            </p>
+          </div>
         )}
       </section>
     </div>

@@ -14,7 +14,7 @@ export function AdminNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-1 text-sm text-[var(--color-muted)]">
+    <nav className="flex flex-col gap-2 text-sm">
       {navItems.map((item) => {
         const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
@@ -22,10 +22,10 @@ export function AdminNav() {
             key={item.href}
             href={item.href}
             className={[
-              'rounded-lg px-3 py-2 transition',
+              'border-2 border-black px-3 py-2 font-bold uppercase transition-all',
               isActive
-                ? 'bg-[rgba(123,63,75,0.12)] text-[var(--color-accent)]'
-                : 'hover:bg-[rgba(233,223,201,0.7)] hover:text-[var(--color-ink)]',
+                ? 'bg-[var(--color-accent-primary)] text-white shadow-[2px_2px_0px_rgba(0,0,0,1)]'
+                : 'bg-white text-black hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]',
             ].join(' ')}
           >
             {item.label}

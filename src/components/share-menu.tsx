@@ -92,7 +92,7 @@ export function ShareMenu({
       <button
         type="button"
         onClick={tryNativeShare}
-        className="inline-flex items-center gap-2 rounded-full border border-[var(--color-muted)]/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+        className="inline-flex items-center gap-2 border-2 border-black bg-[var(--color-accent-primary)] px-4 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-secondary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
       >
         Share • {count}
       </button>
@@ -102,7 +102,7 @@ export function ShareMenu({
             type="button"
             key={network.id}
             onClick={() => onShare(network.id)}
-            className="rounded-full border border-[var(--color-muted)]/30 bg-[rgba(255,255,255,0.6)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+            className="border-2 border-black bg-[var(--color-accent-tertiary)] px-3 py-1.5 text-xs font-medium uppercase text-black transition-all hover:bg-[var(--color-accent-primary)] hover:text-black"
           >
             {network.label}
           </button>
@@ -110,12 +110,12 @@ export function ShareMenu({
         <button
           type="button"
           onClick={() => onShare('copy')}
-          className="rounded-full border border-[var(--color-accent)] bg-[rgba(123,63,75,0.12)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] transition hover:bg-[rgba(123,63,75,0.18)]"
+          className="border-2 border-black bg-[var(--color-accent-success)] px-4 py-1.5 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
         >
           Copy Link
         </button>
       </div>
-      {copyStatus ? <p className="text-xs text-[var(--color-muted)]">{copyStatus}</p> : null}
+      {copyStatus ? <p className="border-2 border-black bg-[var(--color-accent-success)] px-3 py-2 text-xs font-medium text-black">{copyStatus}</p> : null}
     </div>
   );
 }

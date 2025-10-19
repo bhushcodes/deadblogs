@@ -49,15 +49,15 @@ export default async function AdminOverviewPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-[20px] border border-black/10 bg-[rgba(255,255,255,0.7)] p-6 shadow-[var(--shadow-card)]">
-          <h2 className="font-serif text-2xl text-[var(--color-ink)]">Language breakdown</h2>
-          <div className="mt-4 space-y-3 text-sm text-[var(--color-muted)]">
+        <div className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+          <h2 className="text-2xl font-bold text-black">Language breakdown</h2>
+          <div className="mt-4 space-y-3 text-sm text-black">
             {LANGUAGES.map((language) => {
               const match = languagesBreakdown.find((item) => item.language === language.id);
               const count = match?._count._all ?? 0;
               const percent = totalPosts ? Math.round((count / totalPosts) * 100) : 0;
               return (
-                <div key={language.id} className="flex items-center justify-between rounded-lg bg-[rgba(233,223,201,0.6)] px-4 py-3">
+                <div key={language.id} className="flex items-center justify-between border-2 border-black bg-[var(--color-accent-tertiary)] px-4 py-3 font-bold">
                   <span>{language.label}</span>
                   <span>
                     {count} posts · {percent}%
@@ -67,38 +67,38 @@ export default async function AdminOverviewPage() {
             })}
           </div>
         </div>
-        <div className="rounded-[20px] border border-black/10 bg-[rgba(255,255,255,0.7)] p-6 shadow-[var(--shadow-card)]">
-          <h2 className="font-serif text-2xl text-[var(--color-ink)]">Recent updates</h2>
-          <div className="mt-4 space-y-3 text-sm text-[var(--color-muted)]">
+        <div className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+          <h2 className="text-2xl font-bold text-black">Recent updates</h2>
+          <div className="mt-4 space-y-3 text-sm text-black">
             {recentPosts.map((post) => (
               <Link
                 key={post.id}
                 href={`/admin/posts/${post.id}/edit`}
-                className="flex items-center justify-between rounded-lg bg-[rgba(233,223,201,0.45)] px-4 py-3 transition hover:bg-[rgba(233,223,201,0.7)]"
+                className="flex items-center justify-between border-2 border-black bg-white px-4 py-3 transition-all hover:bg-[var(--color-accent-tertiary)] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]"
               >
                 <div>
-                  <p className="font-medium text-[var(--color-ink)]">{post.title}</p>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+                  <p className="font-bold text-black">{post.title}</p>
+                  <p className="text-xs font-bold uppercase text-black">
                     {post.language} · {post.status} · Updated {formatDate(post.updatedAt)}
                   </p>
                 </div>
-                <span className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">Edit</span>
+                <span className="text-xs font-bold uppercase text-black">Edit</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="rounded-[20px] border border-black/10 bg-[rgba(255,255,255,0.7)] p-6 shadow-[var(--shadow-card)]">
-        <h2 className="font-serif text-2xl text-[var(--color-ink)]">Top posts by language</h2>
+      <section className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+        <h2 className="text-2xl font-bold text-black">Top posts by language</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {topPosts.map((group) => (
-            <div key={group.language} className="rounded-[18px] border border-black/10 bg-[rgba(233,223,201,0.5)] p-4">
-              <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">{group.language}</p>
-              <ul className="mt-3 space-y-2 text-sm text-[var(--color-muted)]">
+            <div key={group.language} className="border-2 border-black bg-[var(--color-accent-tertiary)] p-4">
+              <p className="text-xs font-bold uppercase text-black">{group.language}</p>
+              <ul className="mt-3 space-y-2 text-sm text-black">
                 {group.posts.map((post) => (
                   <li key={post.id} className="flex justify-between gap-3">
-                    <Link href={`/admin/posts/${post.id}/edit`} className="flex-1 truncate text-[var(--color-ink)] hover:text-[var(--color-accent)]">
+                    <Link href={`/admin/posts/${post.id}/edit`} className="flex-1 truncate font-bold text-black hover:text-[var(--color-accent-primary)]">
                       {post.title}
                     </Link>
                     <span>{post._count.reactions} ❤</span>
@@ -115,10 +115,10 @@ export default async function AdminOverviewPage() {
 
 function StatCard({ label, value, footer }: { label: string; value: number | string; footer?: string }) {
   return (
-    <div className="rounded-[18px] border border-black/10 bg-[rgba(255,255,255,0.7)] p-5 shadow-[var(--shadow-card)]">
-      <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">{label}</p>
-      <p className="mt-2 font-serif text-3xl text-[var(--color-ink)]">{value}</p>
-      {footer ? <p className="mt-1 text-xs text-[var(--color-muted)]">{footer}</p> : null}
+    <div className="border-2 border-black bg-white p-5 shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+      <p className="text-xs font-bold uppercase text-black">{label}</p>
+      <p className="mt-2 text-3xl font-bold text-black">{value}</p>
+      {footer ? <p className="mt-1 text-xs text-black">{footer}</p> : null}
     </div>
   );
 }

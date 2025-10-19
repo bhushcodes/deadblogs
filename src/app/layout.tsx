@@ -1,20 +1,20 @@
 import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
-import { Playfair_Display, Crimson_Text, Mukta, Noto_Serif_Devanagari } from 'next/font/google';
+import { Space_Grotesk, Inter, Mukta, Noto_Serif_Devanagari } from 'next/font/google';
 import './globals.css';
 import { getThemeSettings } from '@/lib/settings';
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
   weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
-const crimson = Crimson_Text({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-base',
-  weight: ['400', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
 });
 
@@ -65,8 +65,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" suppressHydrationWarning>
       <body
         className={[
-          playfair.variable,
-          crimson.variable,
+          spaceGrotesk.variable,
+          inter.variable,
           mukta.variable,
           notoDevanagari.variable,
           'antialiased',

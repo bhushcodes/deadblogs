@@ -95,9 +95,11 @@ export default async function PostsArchivePage({
           ))}
         </div>
       ) : (
-        <p className="rounded-[18px] border border-dashed border-black/20 bg-[rgba(255,255,255,0.45)] p-8 text-center text-sm text-[var(--color-muted)]">
-          No posts match the current filters. Try adjusting your search.
-        </p>
+        <div className="border-2 border-black bg-[var(--color-accent-tertiary)] p-8 text-center">
+          <p className="text-sm font-medium text-black">
+            No posts match the current filters. Try adjusting your search.
+          </p>
+        </div>
       )}
 
       {totalPages > 1 ? (
@@ -108,7 +110,7 @@ export default async function PostsArchivePage({
           >
             Previous
           </PaginationLink>
-          <span className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted)]">
+          <span className="text-xs font-medium uppercase tracking-wide text-black">
             Page {currentPage} of {totalPages}
           </span>
           <PaginationLink
@@ -151,7 +153,7 @@ function PaginationLink({
 }) {
   if (disabled) {
     return (
-      <span className="cursor-not-allowed rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-black/30">
+      <span className="cursor-not-allowed border-2 border-black bg-[var(--color-accent-tertiary)] px-5 py-2 text-xs font-bold uppercase text-black opacity-50">
         {children}
       </span>
     );
@@ -160,7 +162,7 @@ function PaginationLink({
   return (
     <Link
       href={href}
-      className="rounded-full border border-[var(--color-muted)]/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] transition hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent-muted)]"
+      className="border-2 border-black bg-[var(--color-accent-primary)] px-5 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-tertiary)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
     >
       {children}
     </Link>
