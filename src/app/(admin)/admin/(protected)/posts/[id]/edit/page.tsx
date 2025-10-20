@@ -7,9 +7,10 @@ export const metadata = {
   title: 'Edit Post',
 };
 
-export default async function EditPostPage({ params }: { params: { id: string } }) {
+export default async function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
   const post = await prisma.post.findUnique({
-    where: { id: params.id },
+    where: { id: resolvedParams.id },
     select: {
       id: true,
       title: true,

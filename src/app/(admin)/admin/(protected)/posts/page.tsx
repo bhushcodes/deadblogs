@@ -7,11 +7,10 @@ export const metadata = {
   title: 'Manage Posts',
 };
 
-export default async function AdminPostsPage({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>;
+export default async function AdminPostsPage(props: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const searchParams = await props.searchParams;
   const search = typeof searchParams.search === 'string' ? searchParams.search : undefined;
   const status = typeof searchParams.status === 'string' ? searchParams.status : undefined;
   const languageSlug = typeof searchParams.language === 'string' ? searchParams.language : undefined;

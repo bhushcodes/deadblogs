@@ -10,34 +10,37 @@ import { getAbsoluteUrl } from '@/lib/url';
 export const dynamic = 'force-dynamic';
 
 type TagPageProps = {
-  params: { tag: string };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ tag: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export function generateMetadata({ params }: TagPageProps): Metadata {
-  const titleTag = decodeURIComponent(params.tag);
+export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const titleTag = decodeURIComponent(resolvedParams.tag);
   return {
     title: `Posts tagged “${titleTag}”`,
     description: `Explore poems and stories tagged with ${titleTag}.`,
     alternates: {
-      canonical: getAbsoluteUrl(`/tags/${encodeURIComponent(params.tag)}`),
+      canonical: getAbsoluteUrl(`/tags/${encodeURIComponent(resolvedParams.tag)}`),
     },
   };
 }
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
-  const tag = decodeURIComponent(params.tag);
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  const tag = decodeURIComponent(resolvedParams.tag);
   if (!tag) {
     notFound();
   }
 
-  const languageSlug = typeof searchParams.language === 'string' ? searchParams.language : undefined;
+  const languageSlug = typeof resolvedSearchParams.language === 'string' ? resolvedSearchParams.language : undefined;
   const languageEntry = LANGUAGES.find((item) => item.slug === languageSlug);
-  const sortParam = typeof searchParams.sort === 'string' ? searchParams.sort : 'newest';
+  const sortParam = typeof resolvedSearchParams.sort === 'string' ? resolvedSearchParams.sort : 'newest';
   const sort = SORT_OPTIONS.some((option) => option.id === sortParam)
     ? (sortParam as SortOption)
     : 'newest';
-  const page = typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
+  const page = typeof resolvedSearchParams.page === 'string' ? Number(resolvedSearchParams.page) : 1;
   const skip = Math.max(0, (page - 1) * POSTS_PER_PAGE);
 
   const { posts, total } = await getPublishedPosts({

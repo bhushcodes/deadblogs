@@ -18,11 +18,10 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
-export default async function PostsArchivePage({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>;
+export default async function PostsArchivePage(props: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const searchParams = await props.searchParams;
   const languageSlug = typeof searchParams.language === 'string' ? searchParams.language : undefined;
   const languageEntry = LANGUAGES.find((item) => item.slug === languageSlug);
   const typeParam = typeof searchParams.type === 'string' ? searchParams.type : undefined;

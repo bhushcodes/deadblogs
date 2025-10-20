@@ -17,16 +17,17 @@ import { languageValues, postTypeValues } from '@/lib/validation';
 import { getAbsoluteUrl } from '@/lib/url';
 
 type LanguagePageProps = {
-  params: { language: string };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ language: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
 const languageSlugMap = new Map(LANGUAGES.map((lang) => [lang.slug, lang.id]));
 
 export const dynamic = 'force-dynamic';
 
-export function generateMetadata({ params }: LanguagePageProps): Metadata {
-  const languageId = languageSlugMap.get(params.language);
+export async function generateMetadata({ params }: LanguagePageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const languageId = languageSlugMap.get(resolvedParams.language);
   const languageMeta = LANGUAGES.find((lang) => lang.id === languageId);
   if (!languageMeta) return {};
 
@@ -34,23 +35,25 @@ export function generateMetadata({ params }: LanguagePageProps): Metadata {
     title: `${languageMeta.label} Collection`,
     description: `Browse ${languageMeta.label} poems, short stories, and prose by DEADPOET.`,
     alternates: {
-      canonical: getAbsoluteUrl(`/${params.language}`),
+      canonical: getAbsoluteUrl(`/${resolvedParams.language}`),
     },
   };
 }
 
 export default async function LanguagePage({ params, searchParams }: LanguagePageProps) {
-  const languageId = languageSlugMap.get(params.language);
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  const languageId = languageSlugMap.get(resolvedParams.language);
   if (!languageId || !languageValues.includes(languageId)) {
     notFound();
   }
 
-  const rawTags = typeof searchParams.tags === 'string' ? searchParams.tags.split(',') : [];
-  const rawType = typeof searchParams.type === 'string' ? searchParams.type : undefined;
-  const rawYear = typeof searchParams.year === 'string' ? Number(searchParams.year) : undefined;
-  const rawSort = typeof searchParams.sort === 'string' ? searchParams.sort : undefined;
-  const page = typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
-  const isFeaturedOnly = searchParams.featured === 'true';
+  const rawTags = typeof resolvedSearchParams.tags === 'string' ? resolvedSearchParams.tags.split(',') : [];
+  const rawType = typeof resolvedSearchParams.type === 'string' ? resolvedSearchParams.type : undefined;
+  const rawYear = typeof resolvedSearchParams.year === 'string' ? Number(resolvedSearchParams.year) : undefined;
+  const rawSort = typeof resolvedSearchParams.sort === 'string' ? resolvedSearchParams.sort : undefined;
+  const page = typeof resolvedSearchParams.page === 'string' ? Number(resolvedSearchParams.page) : 1;
+  const isFeaturedOnly = resolvedSearchParams.featured === 'true';
 
   const typeFilter =
     rawType && postTypeValues.includes(rawType as (typeof postTypeValues)[number])
@@ -104,14 +107,14 @@ export default async function LanguagePage({ params, searchParams }: LanguagePag
         actions={
           !isFeaturedOnly ? (
             <Link
-              href={`/posts?language=${params.language}`}
+              href={`/posts?language=${resolvedParams.language}`}
               className="border-2 border-black bg-[var(--color-accent-primary)] px-5 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-success)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               Browse Archive
             </Link>
           ) : (
             <Link
-              href={`/${params.language}`}
+              href={`/${resolvedParams.language}`}
               className="border-2 border-black bg-[var(--color-accent-primary)] px-5 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[var(--color-accent-success)] hover:text-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)]"
             >
               All posts
@@ -146,7 +149,7 @@ export default async function LanguagePage({ params, searchParams }: LanguagePag
         <div className="flex items-center justify-center gap-3">
           <PaginationButton
             disabled={currentPage <= 1}
-            href={buildPageHref(params.language, searchParams, currentPage - 1)}
+            href={buildPageHref(resolvedParams.language, resolvedSearchParams, currentPage - 1)}
           >
             Previous
           </PaginationButton>
@@ -155,7 +158,7 @@ export default async function LanguagePage({ params, searchParams }: LanguagePag
           </span>
           <PaginationButton
             disabled={currentPage >= totalPages}
-            href={buildPageHref(params.language, searchParams, currentPage + 1)}
+            href={buildPageHref(resolvedParams.language, resolvedSearchParams, currentPage + 1)}
           >
             Next
           </PaginationButton>

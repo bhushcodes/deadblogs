@@ -6,11 +6,10 @@ export const metadata = {
   title: 'Comment Moderation',
 };
 
-export default async function AdminCommentsPage({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>;
+export default async function AdminCommentsPage(props: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const searchParams = await props.searchParams;
   const statusParam = typeof searchParams.status === 'string' ? searchParams.status : 'pending';
   const status: 'pending' | 'approved' | 'rejected' =
     statusParam === 'approved' ? 'approved' : statusParam === 'rejected' ? 'rejected' : 'pending';

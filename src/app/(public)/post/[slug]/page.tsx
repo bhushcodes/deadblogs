@@ -20,18 +20,19 @@ import { CommentForm } from '@/components/comment-form';
 export const dynamic = 'force-dynamic';
 
 type PostPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const resolvedParams = await params;
+  const post = await getPostBySlug(resolvedParams.slug);
   if (!post || post.status !== 'published') {
     return {
       title: 'Post not found',
     };
   }
 
-  const canonical = getAbsoluteUrl(`/post/${params.slug}`);
+  const canonical = getAbsoluteUrl(`/post/${resolvedParams.slug}`);
 
   return {
     title: post.title,
@@ -58,7 +59,8 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const resolvedParams = await params;
+  const post = await getPostBySlug(resolvedParams.slug);
 
   if (!post || post.status !== 'published') {
     notFound();

@@ -8,7 +8,7 @@ export default function NotFound() {
       </div>
       <h1 className="text-4xl font-bold text-black md:text-5xl">Page Not Found</h1>
       <p className="max-w-xl text-base leading-relaxed text-black">
-        The page you're looking for doesn't exist or has been moved. Use the buttons below to continue your literary journey.
+        The page you&apos;re looking for doesn&apos;t exist or has been moved. Use the buttons below to continue your literary journey.
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Link
