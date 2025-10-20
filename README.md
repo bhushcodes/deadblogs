@@ -44,10 +44,21 @@ If port 3000 is in use, stop the conflicting process (`lsof -i :3000` → `kill 
 | `npm run build`   | Production build (Turbopack)          |
 | `npm run db:seed` | Seed or re-seed admin + sample posts  |
 
-## 5. Deployment Notes
+## 5. Deployment
 
-- Provide the same environment variables on your hosting platform.
-- Ensure PostgreSQL is reachable from the deployed app.
-- Run `npm run build` then `npm start`, or let your platform handle those steps.
+### Quick Deploy to Vercel
 
-You’re now ready to launch DEADPOET!
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+For detailed Vercel deployment instructions, see **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)**.
+
+### General Deployment Notes
+
+- Copy `.env.example` to `.env` and configure required variables:
+  - `DATABASE_URL` - PostgreSQL connection string
+  - `AUTH_SECRET` - Random 32+ character string for JWT signing
+- Ensure PostgreSQL is reachable from the deployed app
+- Run database migrations: `npx prisma db push`
+- Create admin account using `npm run db:seed`
+
+You're now ready to launch DEADPOET!
