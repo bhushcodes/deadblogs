@@ -32,17 +32,7 @@ This guide will walk you through deploying your DEADPOET blog to Vercel with the
 1. Create a project at [neon.tech](https://neon.tech)
 2. Copy the connection string from your project dashboard
 
-## Step 2: Generate AUTH_SECRET
-
-Run this command in your terminal to generate a secure secret:
-
-```bash
-openssl rand -base64 32
-```
-
-Copy the output - you'll need it for the next step.
-
-## Step 3: Deploy to Vercel
+## Step 2: Deploy to Vercel
 
 ### Method 1: Using Vercel CLI (Recommended)
 
@@ -75,7 +65,7 @@ Copy the output - you'll need it for the next step.
 3. Import your GitHub repository
 4. Vercel will auto-detect Next.js - click **Deploy**
 
-## Step 4: Configure Environment Variables
+## Step 3: Configure Environment Variables
 
 In your Vercel project dashboard:
 
@@ -85,13 +75,14 @@ In your Vercel project dashboard:
 | Variable | Value | Notes |
 |----------|-------|-------|
 | `DATABASE_URL` | Your PostgreSQL connection string | From Step 1 |
-| `AUTH_SECRET` | Your generated secret | From Step 2 |
+| `ADMIN_EMAIL` | Your admin email | e.g., `admin@yourblog.com` |
+| `ADMIN_PASSWORD` | Your admin password | Use a strong password |
 | `NEXT_PUBLIC_SITE_URL` | `https://your-site.vercel.app` | Your Vercel URL |
 
 3. Click **Save** for each variable
 4. **Redeploy** your application from the Deployments tab
 
-## Step 5: Initialize Database
+## Step 4: Initialize Database
 
 After your app is deployed, you need to run Prisma migrations:
 
@@ -112,25 +103,16 @@ npx prisma db push
 
 Run the SQL from your Prisma schema manually through your database provider's SQL editor.
 
-## Step 6: Create Admin Account
+## Step 5: Access Your Admin Panel
 
-You need to create an admin account to access the admin panel. Run the seed script:
+Your admin credentials are set via environment variables (from Step 3):
+- **Admin URL**: `https://your-site.vercel.app/admin/login`
+- **Email**: The `ADMIN_EMAIL` you set
+- **Password**: The `ADMIN_PASSWORD` you set
 
-```bash
-# Set your database URL
-export DATABASE_URL="your-production-database-url"
+**⚠️ IMPORTANT**: Make sure to use a strong password!
 
-# Run seed script
-npm run db:seed
-```
-
-**Default admin credentials** (change these immediately after first login):
-- Email: `admin@deadpoet.blog`
-- Password: `admin123`
-
-**⚠️ IMPORTANT**: Log in and change the admin password immediately!
-
-## Step 7: Access Your Blog
+## Step 6: Access Your Blog
 
 Your blog is now live! You can access:
 
@@ -175,17 +157,16 @@ If you see "Cannot find module '@prisma/client'":
 
 If you can't log in:
 
-1. Verify `AUTH_SECRET` is set in Vercel
-2. Check that admin account was created in database
-3. Ensure cookies are enabled in your browser
+1. Verify `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set in Vercel environment variables
+2. Check that cookies are enabled in your browser
+3. Ensure you're accessing the site via HTTPS (required for secure cookies)
 
 ## Post-Deployment Checklist
 
 - [ ] Database is accessible
-- [ ] Environment variables are set correctly
+- [ ] Environment variables are set correctly (`DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`)
 - [ ] Migrations have been run
-- [ ] Admin account is created
-- [ ] Admin password has been changed
+- [ ] Admin login works at `/admin/login`
 - [ ] Test creating a new post
 - [ ] Test publishing a post
 - [ ] Verify public pages load correctly
