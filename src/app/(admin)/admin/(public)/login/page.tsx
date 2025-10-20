@@ -1,5 +1,5 @@
 import { LoginForm } from '@/components/admin/login-form';
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/simple-auth';
 import { redirect } from 'next/navigation';
 
 export const metadata = {

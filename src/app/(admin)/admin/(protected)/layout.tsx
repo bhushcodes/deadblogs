@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { redirect } from 'next/navigation';
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/simple-auth';
 import { AdminShell } from '@/components/admin/admin-shell';
 
 export default async function AdminProtectedLayout({ children }: { children: ReactNode }) {

@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { loginSchema } from '@/lib/validation';
-import { attemptLogin, logout as destroySession } from '@/lib/auth';
+import { attemptLogin, logout as destroySession } from '@/lib/simple-auth';
 
 export type AuthFormState = {
   status: 'idle' | 'error';
